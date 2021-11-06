@@ -26,7 +26,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     private MapGenerator map;
 
     public GamePlay() {
-        map = new MapGenerator(3, 7);
+        map = new MapGenerator(4, 8);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -46,21 +46,21 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         g.fillRect(691, 0, 3, 592);
 
         g.setColor(Color.white);
-        g.setFont(new Font("serif", Font.BOLD, 25));
+        g.setFont(new Font("serif", Font.BOLD, 20));
         g.drawString("" + score, 590, 30);
 
         g.setColor(Color.yellow);
         g.fillRect(playerX, 550, 100, 8);
 
         //ball
-        g.setColor(Color.GREEN);
+        g.setColor(Color.RED);
         g.fillOval(ballposX, ballposY, 20, 20);
 
         if (ballposY > 570) {
             play = false;
             ballXdir = 0;
             ballYdir = 0;
-            g.setColor(Color.red);
+            g.setColor(Color.blue);
             g.setFont(new Font("serif", Font.BOLD, 30));
             g.drawString("    Game Over Score: " + score, 190, 300);
 
@@ -71,7 +71,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             play = false;
             ballYdir = -2;
             ballXdir = -1;
-            g.setColor(Color.red);
+            g.setColor(Color.green);
             g.setFont(new Font("serif",Font.BOLD,30));
             g.drawString("    Game Over: "+score,190,300);
 
@@ -105,7 +105,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                         int bricksHeight = map.bricksHeight;
 
                         Rectangle rect = new Rectangle(brickX, brickY, bricksWidth, bricksHeight);
-                        Rectangle ballrect = new Rectangle(ballposX, ballposY, 20, 20);
+                        Rectangle ballrect = new Rectangle(ballposX, ballposY, 20, 30);
                         Rectangle brickrect = rect;
 
                         if (ballrect.intersects(brickrect)) {
@@ -129,7 +129,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             ballposX += ballXdir;
             ballposY += ballYdir;
             if (ballposX < 0) {
-                ballXdir = -ballXdir;
+                ballXdir = - ballXdir;
             }
             if (ballposY < 0) {
                 ballYdir = -ballYdir;
